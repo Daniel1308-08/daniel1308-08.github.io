@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePlaza - A melhor experiência cinematográfica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f0f1a;
+            color: white;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        .movie-card {
+            transition: all 0.3s ease;
+            transform: scale(1);
+        }
+        
+        .movie-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ticket-button {
+            background: linear-gradient(90deg, #f72585 0%, #7209b7 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .ticket-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(242, 5, 133, 0.3);
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(15, 15, 26, 0.8);
+        }
+        
+        .showtime-tab.active {
+            border-bottom: 3px solid #f72585;
+            color: #f72585;
+        }
+        
+        .carousel {
+            scroll-snap-type: x mandatory;
+        }
+        
+        .carousel-item {
+            scroll-snap-align: start;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 py-4 px-6 md:px-12 flex justify-between items-center">
+        <div class="flex items-center">
+            <div class="text-3xl font-bold text-pink-500 mr-2">Cine<span class="text-white">Plaza</span></div>
+        </div>
+        
+        <div class="hidden md:flex space-x-8">
+            <a href="#" class="text-white hover:text-pink-500 transition">Início</a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Filmes</a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Promoções</a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Cinemas</a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Eventos</a>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+            <button class="text-white hover:text-pink-500 transition">
+                <i class="fas fa-search text-xl"></i>
+            </button>
+            <button class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-full font-medium transition">
+                Entrar
+            </button>
+            <button class="md:hidden text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient pt-32 pb-20 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">A magia do cinema <span class="text-pink-500">em sua cidade</span></h1>
+                <p class="text-lg text-gray-300 mb-8 max-w-lg">Descubra os melhores filmes em cartaz, com tecnologia de ponta e conforto incomparável. Sua experiência cinematográfica nunca foi tão especial.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <button class="ticket-button px-8 py-4 rounded-full font-bold text-white">
+                        Comprar ingressos
+                    </button>
+                    <button class="border-2 border-white hover:border-pink-500 text-white hover:text-pink-500 px-8 py-4 rounded-full font-bold transition">
+                        Ver programação
+                    </button>
+                </div>
+            </div>
+            <div class="relative hidden md:block">
+                <div class="absolute -top-10 -left-10 w-64 h-64 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating"></div>
+                <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating" style="animation-delay: 1.5s;"></div>
+                <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Cinema experience" class="relative z-10 rounded-2xl shadow-2xl w-full max-w-lg">
+            </div>
+        </div>
+    </section>
+
+    <!-- Now Playing Section -->
+    <section class="py-16 px-6 md:px-12 bg-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-center mb-12">
+                <h2 class="text-3xl font-bold">Em <span class="text-pink-500">cartaz</span></h2>
+                <div class="flex space-x-2">
+                    <button class="showtime-tab active px-4 py-2 font-medium">Hoje</button>
+                    <button class="showtime-tab px-4 py-2 font-medium text-gray-400 hover:text-white transition">Esta semana</button>
+                    <button class="showtime-tab px-4 py-2 font-medium text-gray-400 hover:text-white transition">Em breve</button>
+                </div>
+            </div>
+            
+            <div class="relative">
+                <div class="carousel flex overflow-x-auto pb-8 space-x-6 scrollbar-hide">
+                    <!-- Movie Card 1 -->
+                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
+                        <div class="relative">
+                            <img src="https://image.tmdb.org/t/p/w500/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
+                                <span class="bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded ml-2">DUB</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Homem-Aranha: Através do Aranhaverso</h3>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">4.8</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">2h 20m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Movie Card 2 -->
+                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
+                        <div class="relative">
+                            <img src="https://image.tmdb.org/t/p/w500/8Vt6mWRCeplujSFGk0GrfRNHV3i.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">IMAX</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Oppenheimer</h3>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">4.9</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">3h 00m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Movie Card 3 -->
+                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
+                        <div class="relative">
+                            <img src="https://image.tmdb.org/t/p/w500/8ixm4YhT3jFcj1n3xG9Xlqj0Tsz.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Barbie</h3>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">4.5</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">1h 54m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Movie Card 4 -->
+                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
+                        <div class="relative">
+                            <img src="https://image.tmdb.org/t/p/w500/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">IMAX</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Guardians of the Galaxy Vol. 3</h3>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">4.7</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">2h 30m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Movie Card 5 -->
+                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
+                        <div class="relative">
+                            <img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">John Wick 4</h3>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">4.8</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">2h 49m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Experience Section -->
+    <section class="py-20 px-6 md:px-12 bg-gray-900 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Viva o cinema como <span class="text-pink-500">nunca antes</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">No CinePlaza, oferecemos tecnologias premium para transformar sua experiência cinematográfica</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-800 rounded-xl p-8 text-center hover:bg-gray-700 transition">
+                    <div class="w-20 h-20 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-vr-cardboard text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">IMAX with Laser</h3>
+                    <p class="text-gray-400">A mais avançada tecnologia em projeção, com imagens mais nítidas e cores mais vibrantes.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-gray-800 rounded-xl p-8 text-center hover:bg-gray-700 transition">
+                    <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-volume-up text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Dolby Atmos</h3>
+                    <p class="text-gray-400">Som multidimensional que flui ao seu redor, criando uma experiência auditiva impressionante.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-gray-800 rounded-xl p-8 text-center hover:bg-gray-700 transition">
+                    <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-couch text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Poltronas VIP</h3>
+                    <p class="text-gray-400">Assentos reclináveis ​​com apoio para pernas e serviço de comida e bebida no seu lugar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions Section -->
+    <section class="py-20 px-6 md:px-12 bg-gradient-to-r from-purple-900 to-pink-900">
+        <div class="max-w-7xl mx-auto">
+            <div
+</html>
