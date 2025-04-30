@@ -13,6 +13,7 @@
             font-family: 'Poppins', sans-serif;
             background-color: #0f0f1a;
             color: white;
+            scroll-behavior: smooth;
         }
         
         .hero-gradient {
@@ -69,6 +70,11 @@
         .floating {
             animation: float 3s ease-in-out infinite;
         }
+
+        /* Estilo para links ativos no menu */
+        .nav-link.active {
+            color: #f72585;
+        }
     </style>
 </head>
 <body>
@@ -79,9 +85,9 @@
         </div>
         
         <div class="hidden md:flex space-x-8">
-            <a href="#" class="text-white hover:text-pink-500 transition">Início</a>
-            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Filmes</a>
-            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Promoções</a>
+            <a href="#inicio" class="nav-link text-white hover:text-pink-500 transition active">Início</a>
+            <a href="#filmes" class="nav-link text-gray-400 hover:text-pink-500 transition">Filmes</a>
+            <a href="#promocoes" class="nav-link text-gray-400 hover:text-pink-500 transition">Promoções</a>
             <a href="#" class="text-gray-400 hover:text-pink-500 transition">Cinemas</a>
             <a href="#" class="text-gray-400 hover:text-pink-500 transition">Eventos</a>
         </div>
@@ -100,7 +106,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-gradient pt-32 pb-20 px-6 md:px-12">
+    <section id="inicio" class="hero-gradient pt-32 pb-20 px-6 md:px-12">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div class="text-center md:text-left">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">A magia do cinema <span class="text-pink-500">em sua cidade</span></h1>
@@ -123,7 +129,7 @@
     </section>
 
     <!-- Now Playing Section -->
-    <section class="py-16 px-6 md:px-12 bg-gray-900">
+    <section id="filmes" class="py-16 px-6 md:px-12 bg-gray-900">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between items-center mb-12">
                 <h2 class="text-3xl font-bold">Em <span class="text-pink-500">cartaz</span></h2>
@@ -139,7 +145,7 @@
                     <!-- Movie Card 1 - Gladiador 2 -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
-                            <img src="https://shoppingcidadedasflores.com.br/wp-content/uploads/2024/11/GLADIADOR-II.jpg" alt="Gladiador 2" class="w-full h-80 object-cover">
+                            <img src="https://upload.wikimedia.org/wikipedia/pt/a/a9/Gladiator_II.jpg" alt="Gladiador 2" class="w-full h-80 object-cover">
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
                                 <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">IMAX</span>
                             </div>
@@ -425,7 +431,7 @@
                         <i class="fas fa-vr-cardboard text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3">IMAX with Laser</h3>
-                    <p class="text-gray-400">A mais avançada tecnologia em projeção, com imagens mais nítidas e cores mais vibrantes.</p>
+                    <p class="text-gray-400">A mais avançada tecnologia em projeção, com imagens mais nítidas and cores mais vibrantes.</p>
                 </div>
                 
                 <!-- Feature 2 -->
@@ -450,7 +456,7 @@
     </section>
 
     <!-- Promotions Section -->
-    <section class="py-20 px-6 md:px-12 bg-gradient-to-r from-purple-900 to-pink-900">
+    <section id="promocoes" class="py-20 px-6 md:px-12 bg-gradient-to-r from-purple-900 to-pink-900">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4">Promoções <span class="text-white">especiais</span></h2>
@@ -525,7 +531,7 @@
             <div>
                 <h3 class="text-lg font-bold mb-4">Atendimento</h3>
                 <ul class="space-y-2">
-                    <li class="text-gray-400"><i class="fas fa-phone-alt mr-2"></i> (31) 96622-8422</li>
+                    <li class="text-gray-400"><i class="fas fa-phone-alt mr-2"></i> (31) 9662-8422</li>
                     <li class="text-gray-400"><i class="fas fa-envelope mr-2"></i> cineplaza@gmail.com</li>
                     <li class="text-gray-400"><i class="fas fa-map-marker-alt mr-2"></i> Congonhas - MG</li>
                 </ul>
@@ -562,6 +568,50 @@
                     // Add active class to clicked tab
                     this.classList.add('active', 'text-pink-500');
                     this.classList.remove('text-gray-400');
+                });
+            });
+
+            // Highlight active navigation link based on scroll position
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= (sectionTop - 100)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active', 'text-pink-500');
+                    link.classList.add('text-gray-400');
+                    
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active', 'text-pink-500');
+                        link.classList.remove('text-gray-400');
+                    }
+                });
+            });
+
+            // Smooth scroll for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
                 });
             });
         });
