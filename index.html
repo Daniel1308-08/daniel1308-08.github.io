@@ -13,7 +13,6 @@
             font-family: 'Poppins', sans-serif;
             background-color: #0f0f1a;
             color: white;
-            scroll-behavior: smooth;
         }
         
         .hero-gradient {
@@ -70,24 +69,74 @@
         .floating {
             animation: float 3s ease-in-out infinite;
         }
-
-        /* Estilo para links ativos no menu */
-        .nav-link.active {
-            color: #f72585;
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: #1a1a2e;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .payment-option {
+            border: 1px solid #2d3748;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .payment-option:hover {
+            border-color: #f72585;
+            background-color: rgba(247, 37, 133, 0.1);
+        }
+        
+        .payment-option.selected {
+            border-color: #f72585;
+            background-color: rgba(247, 37, 133, 0.2);
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar fixed top-0 left-0 right-0 z-50 py-4 px-6 md:px-12 flex justify-between items-center">
-        <div class="logo-container" onclick="scrollToTop()">
-            <div class="text-3xl font-bold text-pink-500">Cine<span class="text-white">Plaza</span></div>
+        <div class="flex items-center">
+            <div class="text-3xl font-bold text-pink-500 mr-2">Cine<span class="text-white">Plaza</span></div>
         </div>
         
         <div class="hidden md:flex space-x-8">
-            <a href="#inicio" class="nav-link text-white hover:text-pink-500 transition active">Início</a>
-            <a href="#filmes" class="nav-link text-gray-400 hover:text-pink-500 transition">Filmes</a>
-            <a href="#promocoes" class="nav-link text-gray-400 hover:text-pink-500 transition">Promoções</a>
+            <a href="#" class="text-white hover:text-pink-500 transition">Início</a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Filmes</a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Promoções</a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Cinemas</a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Eventos</a>
         </div>
         
         <div class="flex items-center space-x-4">
@@ -104,7 +153,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero-gradient pt-32 pb-20 px-6 md:px-12">
+    <section class="hero-gradient pt-32 pb-20 px-6 md:px-12">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div class="text-center md:text-left">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">A magia do cinema <span class="text-pink-500">em sua cidade</span></h1>
@@ -127,7 +176,7 @@
     </section>
 
     <!-- Now Playing Section -->
-    <section id="filmes" class="py-16 px-6 md:px-12 bg-gray-900">
+    <section class="py-16 px-6 md:px-12 bg-gray-900">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between items-center mb-12">
                 <h2 class="text-3xl font-bold">Em <span class="text-pink-500">cartaz</span></h2>
@@ -140,270 +189,113 @@
             
             <div class="relative">
                 <div class="carousel flex overflow-x-auto pb-8 space-x-6 scrollbar-hide">
-                    <!-- Movie Card 1 - Gladiador 2 -->
+                    <!-- Movie Card 1 -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
-                            <img src="https://upload.wikimedia.org/wikipedia/pt/a/a9/Gladiator_II.jpg" alt="Gladiador 2" class="w-full h-80 object-cover">
+                            <img src="https://image.tmdb.org/t/p/w500/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg" alt="Movie poster" class="w-full h-80 object-cover">
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                                <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">IMAX</span>
+                                <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
+                                <span class="bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded ml-2">DUB</span>
                             </div>
                         </div>
                         <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Gladiador 2</h3>
+                            <h3 class="font-bold text-lg mb-1">Homem-Aranha: Através do Aranhaverso</h3>
                             <div class="flex items-center text-yellow-400 mb-3">
                                 <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.9</span>
+                                <span class="ml-1 text-white">4.8</span>
                             </div>
                             <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">2h 45m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
+                                <span class="text-gray-400 text-sm">2h 20m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Homem-Aranha: Através do Aranhaverso', 'https://image.tmdb.org/t/p/w500/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg', '2h 20m', '4.8', '3D, DUB')">
                                     Comprar
                                 </button>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Movie Card 2 - Capitão América: Admirável Mundo -->
+                    <!-- Movie Card 2 -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
-                            <img src="https://br.web.img3.acsta.net/c_310_420/img/56/0c/560c72bf877f88472877898cebe00ff0.jpg" alt="Capitão América: Admirável Mundo" class="w-full h-80 object-cover">
+                            <img src="https://image.tmdb.org/t/p/w500/8Vt6mWRCeplujSFGk0GrfRNHV3i.jpg" alt="Movie poster" class="w-full h-80 object-cover">
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                                <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
-                                <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded ml-2">IMAX</span>
+                                <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">IMAX</span>
                             </div>
                         </div>
                         <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Capitão América: Admirável Mundo</h3>
+                            <h3 class="font-bold text-lg mb-1">Oppenheimer</h3>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">4.9</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">3h 00m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Oppenheimer', 'https://image.tmdb.org/t/p/w500/8Vt6mWRCeplujSFGk0GrfRNHV3i.jpg', '3h 00m', '4.9', 'IMAX')">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Movie Card 3 -->
+                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
+                        <div class="relative">
+                            <img src="https://image.tmdb.org/t/p/w500/8ixm4YhT3jFcj1n3xG9Xlqj0Tsz.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Barbie</h3>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">4.5</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">1h 54m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Barbie', 'https://image.tmdb.org/t/p/w500/8ixm4YhT3jFcj1n3xG9Xlqj0Tsz.jpg', '1h 54m', '4.5', '3D')">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Movie Card 4 -->
+                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
+                        <div class="relative">
+                            <img src="https://image.tmdb.org/t/p/w500/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">IMAX</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Guardians of the Galaxy Vol. 3</h3>
                             <div class="flex items-center text-yellow-400 mb-3">
                                 <i class="fas fa-star"></i>
                                 <span class="ml-1 text-white">4.7</span>
                             </div>
                             <div class="flex justify-between items-center">
                                 <span class="text-gray-400 text-sm">2h 30m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Guardians of the Galaxy Vol. 3', 'https://image.tmdb.org/t/p/w500/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg', '2h 30m', '4.7', 'IMAX')">
                                     Comprar
                                 </button>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Movie Card 3 - Novo Serra das Almas -->
+                    <!-- Movie Card 5 -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
-                            <img src="https://br.web.img3.acsta.net/c_310_420/img/f3/d4/f3d4a226480f2ac9b944a70b0fcf71ec.jpg" alt="Serra das Almas" class="w-full h-80 object-cover">
-                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                                <span class="bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded">NAC</span>
-                            </div>
+                            <img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" alt="Movie poster" class="w-full h-80 object-cover">
                         </div>
                         <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1"> Serra das Almas</h3>
-                            <div class="flex items-center text-yellow-400 mb-3">
-                                <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.5</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">1h 50m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Movie Card 4 - Pecadores (Sinners) -->
-                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
-                        <div class="relative">
-                            <img src="https://www.claquete.com.br/fotos/filmes/poster/16240_grande.jpg" alt="Pecadores (Sinners)" class="w-full h-80 object-cover">
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Pecadores (Sinners)</h3>
-                            <div class="flex items-center text-yellow-400 mb-3">
-                                <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.3</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">1h 45m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Movie Card 5 - O Contador 2 -->
-                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
-                        <div class="relative">
-                            <img src="https://all.web.img.acsta.net/r_500_x/img/05/e8/05e86a55fc3024c3d3fbcbc1bb933404.jpg" alt="O Contador 2" class="w-full h-80 object-cover">
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">O Contador 2</h3>
-                            <div class="flex items-center text-yellow-400 mb-3">
-                                <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.6</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">2h 15m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Movie Card 6 - Thunderbolts -->
-                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
-                        <div class="relative">
-                            <img src="https://www.ucicinemas.com.br/Content/Upload/Filmes/Posters/10979/filme_10979.jpg" alt="Thunderbolts" class="w-full h-80 object-cover">
-                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                                <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">IMAX</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Thunderbolts</h3>
-                            <div class="flex items-center text-yellow-400 mb-3">
-                                <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.4</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">2h 10m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Movie Card 7 - Memórias de Um Caracol -->
-                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
-                        <div class="relative">
-                            <img src="https://br.web.img3.acsta.net/c_310_420/img/34/0a/340a845eb2438cf09cdd9e2f51fe738a.jpg" alt="Memórias de Um Caracol" class="w-full h-80 object-cover">
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Memórias de Um Caracol</h3>
-                            <div class="flex items-center text-yellow-400 mb-3">
-                                <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.2</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">1h 40m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Movie Card 8 - Pequenos Invasores -->
-                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
-                        <div class="relative">
-                            <img src="https://upload.wikimedia.org/wikipedia/pt/1/15/Aliens_in_the_Attic.jpeg" alt="Pequenos Invasores" class="w-full h-80 object-cover">
-                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                                <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Pequenos Invasores</h3>
-                            <div class="flex items-center text-yellow-400 mb-3">
-                                <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.0</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">1h 30m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Movie Card 9 - Lilo & Stitch -->
-                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
-                        <div class="relative">
-                            <img src="https://br.web.img2.acsta.net/img/4c/d2/4cd2601ab489fa51f23dda05cbb1ddd7.jpg" alt="Lilo & Stitch" class="w-full h-80 object-cover">
-                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                                <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
-                                <span class="bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded ml-2">DUB</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Lilo & Stitch</h3>
+                            <h3 class="font-bold text-lg mb-1">John Wick 4</h3>
                             <div class="flex items-center text-yellow-400 mb-3">
                                 <i class="fas fa-star"></i>
                                 <span class="ml-1 text-white">4.8</span>
                             </div>
                             <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">1h 25m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Movie Card 10 - Looney Tunes - O Filme: O Dia que a Terra Explodiu -->
-                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
-                        <div class="relative">
-                            <img src="https://cms-assets.webediamovies.pro/cdn-cgi/image/dpr=1,fit=scale-down,gravity=auto,metadata=none,quality=85,width=2500/production/4306/bcb18577ee9d57e7c9f13f2d59736003.jpg" alt="Looney Tunes - O Filme: O Dia que a Terra Explodiu" class="w-full h-80 object-cover">
-                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                                <span class="bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded">DUB</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Looney Tunes - O Dia que a Terra Explodiu</h3>
-                            <div class="flex items-center text-yellow-400 mb-3">
-                                <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.1</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">1h 35m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Movie Card 11 - Um Filme Minecraft -->
-                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
-                        <div class="relative">
-                            <img src="https://all.web.img.acsta.net/img/27/b4/27b4d56dcfb7279f6a36e46da0e7dfa1.jpg" alt="Um Filme Minecraft" class="w-full h-80 object-cover">
-                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                                <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Um Filme Minecraft</h3>
-                            <div class="flex items-center text-yellow-400 mb-3">
-                                <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.3</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">1h 50m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Movie Card 12 - Branca de Neve -->
-                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
-                        <div class="relative">
-                            <img src="https://m.media-amazon.com/images/M/MV5BZWU5YTY0N2MtMTcyYi00MzM3LWJkNWMtOTllNGEwZmViNTE1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Branca de Neve" class="w-full h-80 object-cover">
-                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                                <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
-                                <span class="bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded ml-2">DUB</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Branca de Neve</h3>
-                            <div class="flex items-center text-yellow-400 mb-3">
-                                <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.6</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">1h 45m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold">
+                                <span class="text-gray-400 text-sm">2h 49m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('John Wick 4', 'https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg', '2h 49m', '4.8', '')">
                                     Comprar
                                 </button>
                             </div>
@@ -429,7 +321,7 @@
                         <i class="fas fa-vr-cardboard text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3">IMAX with Laser</h3>
-                    <p class="text-gray-400">A mais avançada tecnologia em projeção, com imagens mais nítidas and cores mais vibrantes.</p>
+                    <p class="text-gray-400">A mais avançada tecnologia em projeção, com imagens mais nítidas e cores mais vibrantes.</p>
                 </div>
                 
                 <!-- Feature 2 -->
@@ -454,173 +346,214 @@
     </section>
 
     <!-- Promotions Section -->
-    <section id="promocoes" class="py-20 px-6 md:px-12 bg-gradient-to-r from-purple-900 to-pink-900">
+    <section class="py-20 px-6 md:px-12 bg-gradient-to-r from-purple-900 to-pink-900">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Promoções <span class="text-white">especiais</span></h2>
-                <p class="text-gray-300 max-w-2xl mx-auto">Aproveite nossas ofertas exclusivas para tornar sua experiência ainda mais especial</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Promotion 1 -->
-                <div class="bg-white bg-opacity-10 rounded-xl p-8 backdrop-filter backdrop-blur-lg border border-white border-opacity-10">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-ticket-alt text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Meia-Entrada</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">Todas as quartas-feiras você paga meia em qualquer sessão! Aproveite para assistir seus filmes favoritos com desconto.</p>
-                    <button class="text-pink-400 font-bold hover:text-pink-300 transition">Saiba mais →</button>
-                </div>
-                
-                <!-- Promotion 2 -->
-                <div class="bg-white bg-opacity-10 rounded-xl p-8 backdrop-filter backdrop-blur-lg border border-white border-opacity-10">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-popcorn text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Combo Família</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">3 ingressos + 3 refrigerantes médios + 2 pipocas grandes por apenas R$ 99,90. Válido para sessões 2D.</p>
-                    <button class="text-pink-400 font-bold hover:text-pink-300 transition">Saiba mais →</button>
-                </div>
-                
-                <!-- Promotion 3 -->
-                <div class="bg-white bg-opacity-10 rounded-xl p-8 backdrop-filter backdrop-blur-lg border border-white border-opacity-10">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-birthday-cake text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Aniversariante</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">No mês do seu aniversário, você ganha 50% de desconto em qualquer ingresso. Traga seu documento e aproveite!</p>
-                    <button class="text-pink-400 font-bold hover:text-pink-300 transition">Saiba mais →</button>
-                </div>
-            </div>
+            <!-- Content here -->
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800 py-12 px-6 md:px-12">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
-            <div>
-                <div class="text-3xl font-bold text-pink-500 mb-4">Cine<span class="text-white">Plaza</span></div>
-                <p class="text-gray-400 mb-4">A melhor experiência cinematográfica da sua cidade.</p>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-pink-500 transition"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-500 transition"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-500 transition"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-500 transition"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            
-            <div>
-                <h3 class="text-lg font-bold mb-4">Links Úteis</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-pink-500 transition">Sobre nós</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-pink-500 transition">Termos de uso</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-pink-500 transition">Política de privacidade</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-pink-500 transition">Trabalhe conosco</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-pink-500 transition">Contato</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="text-lg font-bold mb-4">Atendimento</h3>
-                <ul class="space-y-2">
-                    <li class="text-gray-400"><i class="fas fa-phone-alt mr-2"></i> (31) 9662-8422</li>
-                    <li class="text-gray-400"><i class="fas fa-envelope mr-2"></i> cineplaza@gmail.com</li>
-                    <li class="text-gray-400"><i class="fas fa-map-marker-alt mr-2"></i> Congonhas - MG</li>
-                </ul>
-            </div>
-            
-            <div>
-                <h3 class="text-lg font-bold mb-4">Newsletter</h3>
-                <p class="text-gray-400 mb-4">Cadastre-se para receber promoções e novidades</p>
-                <div class="flex">
-                    <input type="email" placeholder="Seu e-mail" class="bg-gray-800 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-pink-500 w-full">
-                    <button class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-r-lg transition">
-                        <i class="fas fa-paper-plane"></i>
+    <!-- Modal de Compra -->
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content">
+            <div class="bg-gray-800 p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold" id="modalMovieTitle">Filme</h3>
+                    <button class="text-gray-400 hover:text-white" onclick="closeModal()">
+                        <i class="fas fa-times"></i>
                     </button>
                 </div>
+                
+                <div class="flex mb-6">
+                    <img id="modalMoviePoster" src="" alt="Movie poster" class="w-24 h-32 object-cover rounded-lg mr-4">
+                    <div>
+                        <div class="flex items-center text-yellow-400 mb-2">
+                            <i class="fas fa-star"></i>
+                            <span class="ml-1 text-white" id="modalMovieRating">0.0</span>
+                        </div>
+                        <div class="text-gray-400 text-sm mb-2" id="modalMovieDuration">0h 0m</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span id="modalMovieTags" class="text-xs font-bold"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-3">Selecione a sessão</h4>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button class="bg-gray-700 hover:bg-pink-600 text-white py-2 px-3 rounded text-sm">14:00</button>
+                        <button class="bg-gray-700 hover:bg-pink-600 text-white py-2 px-3 rounded text-sm">16:30</button>
+                        <button class="bg-gray-700 hover:bg-pink-600 text-white py-2 px-3 rounded text-sm">19:00</button>
+                        <button class="bg-gray-700 hover:bg-pink-600 text-white py-2 px-3 rounded text-sm">21:30</button>
+                        <button class="bg-gray-700 hover:bg-pink-600 text-white py-2 px-3 rounded text-sm">23:45</button>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-3">Ingressos</h4>
+                    <div class="bg-gray-700 rounded-lg p-4 mb-3">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-medium">Inteira</span>
+                                <span class="text-gray-400 text-sm block">R$ 32,00</span>
+                            </div>
+                            <div class="flex items-center">
+                                <button class="bg-gray-600 text-white w-6 h-6 rounded-full flex items-center justify-center">-</button>
+                                <span class="mx-3">0</span>
+                                <button class="bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-medium">Meia-entrada</span>
+                                <span class="text-gray-400 text-sm block">R$ 16,00</span>
+                            </div>
+                            <div class="flex items-center">
+                                <button class="bg-gray-600 text-white w-6 h-6 rounded-full flex items-center justify-center">-</button>
+                                <span class="mx-3">0</span>
+                                <button class="bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-3">Método de pagamento</h4>
+                    <div class="space-y-3">
+                        <div class="payment-option" onclick="selectPayment(this)">
+                            <div class="flex items-center">
+                                <i class="fab fa-cc-visa text-2xl text-blue-500 mr-3"></i>
+                                <span>Cartão de crédito</span>
+                            </div>
+                        </div>
+                        <div class="payment-option" onclick="selectPayment(this)">
+                            <div class="flex items-center">
+                                <i class="fas fa-barcode text-2xl text-green-500 mr-3"></i>
+                                <span>Boleto bancário</span>
+                            </div>
+                        </div>
+                        <div class="payment-option" onclick="selectPayment(this)">
+                            <div class="flex items-center">
+                                <i class="fab fa-pix text-2xl text-purple-500 mr-3"></i>
+                                <span>PIX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-700 rounded-lg p-4 mb-6">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-400">Subtotal</span>
+                        <span class="font-medium">R$ 0,00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Taxa de serviço</span>
+                        <span class="font-medium">R$ 3,50</span>
+                    </div>
+                    <div class="border-t border-gray-600 mt-3 pt-3 flex justify-between">
+                        <span class="font-bold">Total</span>
+                        <span class="font-bold text-pink-500">R$ 3,50</span>
+                    </div>
+                </div>
+                
+                <button class="ticket-button w-full py-3 rounded-lg font-bold" onclick="closeModal()">
+                    Concluir compra
+                </button>
             </div>
         </div>
-        
-        <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>© 2025 CinePlaza. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // Simple script to handle tab switching
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.showtime-tab');
+        // Função para abrir o modal com os dados do filme
+        function openModal(title, poster, duration, rating, tags) {
+            document.getElementById('modalMovieTitle').textContent = title;
+            document.getElementById('modalMoviePoster').src = poster;
+            document.getElementById('modalMovieDuration').textContent = duration;
+            document.getElementById('modalMovieRating').textContent = rating;
             
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remove active class from all tabs
-                    tabs.forEach(t => t.classList.remove('active', 'text-pink-500'));
-                    tabs.forEach(t => t.classList.add('text-gray-400'));
-                    
-                    // Add active class to clicked tab
-                    this.classList.add('active', 'text-pink-500');
-                    this.classList.remove('text-gray-400');
-                });
-            });
-
-            // Highlight active navigation link based on scroll position
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            window.addEventListener('scroll', function() {
-                let current = '';
-                
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    
-                    if (pageYOffset >= (sectionTop - 100)) {
-                        current = section.getAttribute('id');
+            // Limpa tags anteriores
+            const tagsContainer = document.getElementById('modalMovieTags');
+            tagsContainer.innerHTML = '';
+            
+            // Adiciona novas tags se existirem
+            if (tags) {
+                const tagArray = tags.split(', ');
+                tagArray.forEach(tag => {
+                    if (tag.trim() !== '') {
+                        const span = document.createElement('span');
+                        span.className = 'bg-gray-700 text-white text-xs px-2 py-1 rounded';
+                        span.textContent = tag;
+                        tagsContainer.appendChild(span);
                     }
                 });
-                
-                navLinks.forEach(link => {
-                    link.classList.remove('active', 'text-pink-500');
-                    link.classList.add('text-gray-400');
-                    
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active', 'text-pink-500');
-                        link.classList.remove('text-gray-400');
-                    }
-                });
-            });
-
-            // Smooth scroll for navigation links
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 80,
-                            behavior: 'smooth'
-
-                        });
-                    }
-                });
-            });
+            }
+            
+            // Mostra o modal
+            const modal = document.getElementById('purchaseModal');
+            modal.classList.add('active');
+            
+            // Adiciona animação
+            setTimeout(() => {
+                document.querySelector('.modal-content').style.transform = 'translateY(0)';
+                document.querySelector('.modal-content').style.opacity = '1';
+            }, 10);
+            
+            // Desabilita scroll da página
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Função para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('purchaseModal');
+            modal.classList.remove('active');
+            document.querySelector('.modal-content').style.transform = 'translateY(20px)';
+            document.querySelector('.modal-content').style.opacity = '0';
+            
+            // Habilita scroll da página
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Fechar modal ao clicar fora
+        document.getElementById('purchaseModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
         });
-    // Function to scroll to top when clicking on logo
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        
+        // Selecionar método de pagamento
+        function selectPayment(element) {
+            // Remove a seleção anterior
+            const selected = document.querySelector('.payment-option.selected');
+            if (selected) {
+                selected.classList.remove('selected');
+            }
+            
+            // Adiciona seleção ao elemento clicado
+            element.classList.add('selected');
+        }
+        
+        // Contador de ingressos
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('bg-pink-600') || e.target.classList.contains('bg-gray-600')) {
+                const counter = e.target.parentElement.querySelector('span');
+                let value = parseInt(counter.textContent);
+                
+                if (e.target.classList.contains('bg-pink-600')) {
+                    value++;
+                } else if (value > 0) {
+                    value--;
+                }
+                
+                counter.textContent = value;
+                updateTotal();
+            }
         });
-    }
+        
+        // Atualizar total
+        function updateTotal() {
+            // Implementar lógica para calcular o total
+        }
     </script>
 </body>
 </html>
