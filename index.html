@@ -13,6 +13,7 @@
             font-family: 'Poppins', sans-serif;
             background-color: #0f0f1a;
             color: white;
+            scroll-behavior: smooth;
         }
         
         .hero-gradient {
@@ -133,7 +134,7 @@
         
         <div class="hidden md:flex space-x-8">
             <a href="#" class="text-white hover:text-pink-500 transition">Início</a>
-            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Filmes</a>
+            <a href="#movies" class="text-gray-400 hover:text-pink-500 transition">Filmes</a>
             <a href="#" class="text-gray-400 hover:text-pink-500 transition">Promoções</a>
             <a href="#" class="text-gray-400 hover:text-pink-500 transition">Cinemas</a>
             <a href="#" class="text-gray-400 hover:text-pink-500 transition">Eventos</a>
@@ -159,9 +160,9 @@
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">A magia do cinema <span class="text-pink-500">em sua cidade</span></h1>
                 <p class="text-lg text-gray-300 mb-8 max-w-lg">Descubra os melhores filmes em cartaz, com tecnologia de ponta e conforto incomparável. Sua experiência cinematográfica nunca foi tão especial.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <button class="ticket-button px-8 py-4 rounded-full font-bold text-white">
+                    <a href="#movies" class="ticket-button px-8 py-4 rounded-full font-bold text-white text-center">
                         Comprar ingressos
-                    </button>
+                    </a>
                     <button class="border-2 border-white hover:border-pink-500 text-white hover:text-pink-500 px-8 py-4 rounded-full font-bold transition">
                         Ver programação
                     </button>
@@ -176,7 +177,7 @@
     </section>
 
     <!-- Now Playing Section -->
-    <section class="py-16 px-6 md:px-12 bg-gray-900">
+    <section id="movies" class="py-16 px-6 md:px-12 bg-gray-900">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between items-center mb-12">
                 <h2 class="text-3xl font-bold">Em <span class="text-pink-500">cartaz</span></h2>
@@ -189,113 +190,137 @@
             
             <div class="relative">
                 <div class="carousel flex overflow-x-auto pb-8 space-x-6 scrollbar-hide">
-                    <!-- Movie Card 1 -->
+                    <!-- Movie Card 1 - Gladiador 2 -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
-                            <img src="https://image.tmdb.org/t/p/w500/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                            <img src="https://image.tmdb.org/t/p/w500/6vW1ZQEsWkX1aQoOQ3e5L3x5Y9l.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">IMAX</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Gladiador 2</h3>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">4.7</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">2h 35m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Gladiador 2', 'https://image.tmdb.org/t/p/w500/6vW1ZQEsWkX1aQoOQ3e5L3x5Y9l.jpg', '2h 35m', '4.7', 'IMAX')">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Movie Card 2 - Lilo & Stitch -->
+                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
+                        <div class="relative">
+                            <img src="https://image.tmdb.org/t/p/w500/7Z7WVzJsSReG8P0Yx7Wf3NxS0JV.jpg" alt="Movie poster" class="w-full h-80 object-cover">
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
                                 <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
                                 <span class="bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded ml-2">DUB</span>
                             </div>
                         </div>
                         <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Homem-Aranha: Através do Aranhaverso</h3>
-                            <div class="flex items-center text-yellow-400 mb-3">
-                                <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.8</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">2h 20m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Homem-Aranha: Através do Aranhaverso', 'https://image.tmdb.org/t/p/w500/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg', '2h 20m', '4.8', '3D, DUB')">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Movie Card 2 -->
-                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
-                        <div class="relative">
-                            <img src="https://image.tmdb.org/t/p/w500/8Vt6mWRCeplujSFGk0GrfRNHV3i.jpg" alt="Movie poster" class="w-full h-80 object-cover">
-                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                                <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">IMAX</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Oppenheimer</h3>
-                            <div class="flex items-center text-yellow-400 mb-3">
-                                <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.9</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">3h 00m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Oppenheimer', 'https://image.tmdb.org/t/p/w500/8Vt6mWRCeplujSFGk0GrfRNHV3i.jpg', '3h 00m', '4.9', 'IMAX')">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Movie Card 3 -->
-                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
-                        <div class="relative">
-                            <img src="https://image.tmdb.org/t/p/w500/8ixm4YhT3jFcj1n3xG9Xlqj0Tsz.jpg" alt="Movie poster" class="w-full h-80 object-cover">
-                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                                <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Barbie</h3>
+                            <h3 class="font-bold text-lg mb-1">Lilo & Stitch</h3>
                             <div class="flex items-center text-yellow-400 mb-3">
                                 <i class="fas fa-star"></i>
                                 <span class="ml-1 text-white">4.5</span>
                             </div>
                             <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">1h 54m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Barbie', 'https://image.tmdb.org/t/p/w500/8ixm4YhT3jFcj1n3xG9Xlqj0Tsz.jpg', '1h 54m', '4.5', '3D')">
+                                <span class="text-gray-400 text-sm">1h 25m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Lilo & Stitch', 'https://image.tmdb.org/t/p/w500/7Z7WVzJsSReG8P0Yx7Wf3NxS0JV.jpg', '1h 25m', '4.5', '3D, DUB')">
                                     Comprar
                                 </button>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Movie Card 4 -->
+                    <!-- Movie Card 3 - Um Filme Minecraft -->
+                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
+                        <div class="relative">
+                            <img src="https://image.tmdb.org/t/p/w500/4cRtAu0qEYk5YulA9r0B8mAleY0.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Um Filme Minecraft</h3>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">4.2</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">1h 45m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Um Filme Minecraft', 'https://image.tmdb.org/t/p/w500/4cRtAu0qEYk5YulA9r0B8mAleY0.jpg', '1h 45m', '4.2', '3D')">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Movie Card 4 - Premonição 6: Laços de Sangue -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
                             <img src="https://image.tmdb.org/t/p/w500/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1">Premonição 6: Laços de Sangue</h3>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">4.3</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">1h 52m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Premonição 6: Laços de Sangue', 'https://image.tmdb.org/t/p/w500/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg', '1h 52m', '4.3', '')">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Movie Card 5 - Conclave -->
+                    <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
+                        <div class="relative">
+                            <img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" alt="Movie poster" class="w-full h-80 object-cover">
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
                                 <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">IMAX</span>
                             </div>
                         </div>
                         <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Guardians of the Galaxy Vol. 3</h3>
+                            <h3 class="font-bold text-lg mb-1">Conclave</h3>
                             <div class="flex items-center text-yellow-400 mb-3">
                                 <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.7</span>
+                                <span class="ml-1 text-white">4.1</span>
                             </div>
                             <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">2h 30m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Guardians of the Galaxy Vol. 3', 'https://image.tmdb.org/t/p/w500/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg', '2h 30m', '4.7', 'IMAX')">
+                                <span class="text-gray-400 text-sm">2h 10m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Conclave', 'https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg', '2h 10m', '4.1', 'IMAX')">
                                     Comprar
                                 </button>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Movie Card 5 -->
+                    <!-- Movie Card 6 - Looney Tunes -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
-                            <img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                            <img src="https://image.tmdb.org/t/p/w500/8ixm4YhT3jFcj1n3xG9Xlqj0Tsz.jpg" alt="Movie poster" class="w-full h-80 object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">3D</span>
+                                <span class="bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded ml-2">DUB</span>
+                            </div>
                         </div>
                         <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">John Wick 4</h3>
+                            <h3 class="font-bold text-lg mb-1">Looney Tunes</h3>
                             <div class="flex items-center text-yellow-400 mb-3">
                                 <i class="fas fa-star"></i>
-                                <span class="ml-1 text-white">4.8</span>
+                                <span class="ml-1 text-white">4.6</span>
                             </div>
                             <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">2h 49m</span>
-                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('John Wick 4', 'https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg', '2h 49m', '4.8', '')">
+                                <span class="text-gray-400 text-sm">1h 38m</span>
+                                <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Looney Tunes', 'https://image.tmdb.org/t/p/w500/8ixm4YhT3jFcj1n3xG9Xlqj0Tsz.jpg', '1h 38m', '4.6', '3D, DUB')">
                                     Comprar
                                 </button>
                             </div>
