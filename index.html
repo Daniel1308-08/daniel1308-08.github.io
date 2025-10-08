@@ -8,56 +8,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
+        
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #0f0f1a;
             color: white;
             scroll-behavior: smooth;
         }
-
+        
         .hero-gradient {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
         }
-
+        
         .movie-card {
             transition: all 0.3s ease;
             transform: scale(1);
         }
-
+        
         .movie-card:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
-
+        
         .ticket-button {
             background: linear-gradient(90deg, #f72585 0%, #7209b7 100%);
             transition: all 0.3s ease;
         }
-
+        
         .ticket-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(242, 5, 133, 0.3);
         }
-
+        
         .navbar {
             backdrop-filter: blur(10px);
             background-color: rgba(15, 15, 26, 0.8);
         }
-
+        
         .showtime-tab.active {
             border-bottom: 3px solid #f72585;
             color: #f72585;
         }
-
+        
         .carousel {
             scroll-snap-type: x mandatory;
         }
-
+        
         .carousel-item {
             scroll-snap-align: start;
         }
-
+        
         @keyframes float {
             0%, 100% {
                 transform: translateY(0);
@@ -66,11 +66,11 @@
                 transform: translateY(-10px);
             }
         }
-
+        
         .floating {
             animation: float 3s ease-in-out infinite;
         }
-
+        
         /* Modal styles */
         .modal {
             display: none;
@@ -84,7 +84,7 @@
             justify-content: center;
             align-items: center;
         }
-
+        
         .modal-content {
             background-color: #1a1a2e;
             border-radius: 12px;
@@ -95,16 +95,16 @@
             opacity: 0;
             transition: all 0.3s ease;
         }
-
+        
         .modal.active {
             display: flex;
         }
-
+        
         .modal.active .modal-content {
             transform: translateY(0);
             opacity: 1;
         }
-
+        
         .payment-option {
             border: 1px solid #2d3748;
             border-radius: 8px;
@@ -113,12 +113,12 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-
+        
         .payment-option:hover {
             border-color: #f72585;
             background-color: rgba(247, 37, 133, 0.1);
         }
-
+        
         .payment-option.selected {
             border-color: #f72585;
             background-color: rgba(247, 37, 133, 0.2);
@@ -131,23 +131,35 @@
         <div class="flex items-center">
             <div class="text-3xl font-bold text-pink-500 mr-2">Cine<span class="text-white">Plaza</span></div>
         </div>
-
+        
         <div class="hidden md:flex space-x-8">
             <a href="#" class="text-white hover:text-pink-500 transition">Início</a>
             <a href="#movies" class="text-gray-400 hover:text-pink-500 transition">Filmes</a>
-            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Promoções</a>
-            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Cinemas</a>
-            <a href="#" class="text-gray-400 hover:text-pink-500 transition">Eventos</a>
         </div>
-
+        
         <div class="flex items-center space-x-4">
-@@ -163,420 +160,417 @@
+            <button class="text-white hover:text-pink-500 transition">
+                <i class="fas fa-search text-xl"></i>
+            </button>
+            <button class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-full font-medium transition">
+                Entrar
+            </button>
+            <button class="md:hidden text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient pt-32 pb-20 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">A magia do cinema <span class="text-pink-500">em sua cidade</span></h1>
+                <p class="text-lg text-gray-300 mb-8 max-w-lg">Descubra os melhores filmes em cartaz, com tecnologia de ponta e conforto incomparável. Sua experiência cinematográfica nunca foi tão especial.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                     <a href="#movies" class="ticket-button px-8 py-4 rounded-full font-bold text-white text-center">
                         Comprar ingressos
                     </a>
-                    <button class="border-2 border-white hover:border-pink-500 text-white hover:text-pink-500 px-8 py-4 rounded-full font-bold transition">
-                        Ver programação
-                    </button>
                 </div>
             </div>
             <div class="relative hidden md:block">
@@ -167,32 +179,32 @@
                     <button class="showtime-tab active px-4 py-2 font-medium">Hoje</button>
                 </div>
             </div>
-
+            
             <div class="relative">
                 <div class="carousel flex overflow-x-auto pb-8 space-x-6 scrollbar-hide">
-                    <!-- Movie Card 1 - Tron Ares -->
+                    <!-- Movie Card 1 - Gladiador 2 -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
-                            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt6604188%2F&psig=AOvVaw03hwpPpwJV34srLPswJqh1&ust=1759975010321000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCJCsyf2_k5ADFQAAAAAdAAAAABAL" alt="Movie poster" class="w-full h-80 object-cover">
+                            <img src="https://upload.wikimedia.org/wikipedia/pt/a/a9/Gladiator_II.jpg" alt="Movie poster" class="w-full h-80 object-cover">
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
                                 <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">IMAX</span>
                             </div>
                         </div>
                         <div class="p-4">
-                            <h3 class="font-bold text-lg mb-1">Tron: Ares</h3>
+                            <h3 class="font-bold text-lg mb-1">Gladiador 2</h3>
                             <div class="flex items-center text-yellow-400 mb-3">
                                 <i class="fas fa-star"></i>
                                 <span class="ml-1 text-white">4.7</span>
                             </div>
                             <div class="flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">1h 59m</span>
+                                <span class="text-gray-400 text-sm">2h 35m</span>
                                 <button class="ticket-button px-4 py-2 rounded-lg text-sm font-bold" onclick="openModal('Gladiador 2', 'https://image.tmdb.org/t/p/w500/6vW1ZQEsWkX1aQoOQ3e5L3x5Y9l.jpg', '2h 35m', '4.7', 'IMAX')">
                                     Comprar
                                 </button>
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Movie Card 2 - Lilo & Stitch -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
@@ -216,7 +228,7 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Movie Card 3 - Um Filme Minecraft -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
@@ -239,7 +251,7 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Movie Card 4 - Premonição 6: Laços de Sangue -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
@@ -259,7 +271,7 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Movie Card 5 - Conclave -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
@@ -282,7 +294,7 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Movie Card 6 - Looney Tunes -->
                     <div class="carousel-item flex-shrink-0 w-64 movie-card bg-gray-800 rounded-xl overflow-hidden">
                         <div class="relative">
@@ -318,7 +330,7 @@
                 <h2 class="text-3xl font-bold mb-4">Viva o cinema como <span class="text-pink-500">nunca antes</span></h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">No CinePlaza, oferecemos tecnologias premium para transformar sua experiência cinematográfica</p>
             </div>
-
+            
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
                 <div class="bg-gray-800 rounded-xl p-8 text-center hover:bg-gray-700 transition">
@@ -328,7 +340,7 @@
                     <h3 class="text-xl font-bold mb-3">IMAX with Laser</h3>
                     <p class="text-gray-400">A mais avançada tecnologia em projeção, com imagens mais nítidas e cores mais vibrantes.</p>
                 </div>
-
+                
                 <!-- Feature 2 -->
                 <div class="bg-gray-800 rounded-xl p-8 text-center hover:bg-gray-700 transition">
                     <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -337,7 +349,7 @@
                     <h3 class="text-xl font-bold mb-3">Dolby Atmos</h3>
                     <p class="text-gray-400">Som multidimensional que flui ao seu redor, criando uma experiência auditiva impressionante.</p>
                 </div>
-
+                
                 <!-- Feature 3 -->
                 <div class="bg-gray-800 rounded-xl p-8 text-center hover:bg-gray-700 transition">
                     <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -367,7 +379,7 @@
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-
+                
                 <div class="flex mb-6">
                     <img id="modalMoviePoster" src="" alt="Movie poster" class="w-24 h-32 object-cover rounded-lg mr-4">
                     <div>
@@ -381,7 +393,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="mb-6">
                     <h4 class="font-bold mb-3">Selecione a sessão</h4>
                     <div class="grid grid-cols-3 gap-2">
@@ -392,7 +404,7 @@
                         <button class="bg-gray-700 hover:bg-pink-600 text-white py-2 px-3 rounded text-sm">23:45</button>
                     </div>
                 </div>
-
+                
                 <div class="mb-6">
                     <h4 class="font-bold mb-3">Ingressos</h4>
                     <div class="bg-gray-700 rounded-lg p-4 mb-3">
@@ -422,7 +434,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="mb-6">
                     <h4 class="font-bold mb-3">Método de pagamento</h4>
                     <div class="space-y-3">
@@ -446,7 +458,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="bg-gray-700 rounded-lg p-4 mb-6">
                     <div class="flex justify-between mb-2">
                         <span class="text-gray-400">Subtotal</span>
@@ -461,7 +473,7 @@
                         <span class="font-bold text-pink-500">R$ 3,50</span>
                     </div>
                 </div>
-
+                
                 <button class="ticket-button w-full py-3 rounded-lg font-bold" onclick="closeModal()">
                     Concluir compra
                 </button>
@@ -476,11 +488,11 @@
             document.getElementById('modalMoviePoster').src = poster;
             document.getElementById('modalMovieDuration').textContent = duration;
             document.getElementById('modalMovieRating').textContent = rating;
-
+            
             // Limpa tags anteriores
             const tagsContainer = document.getElementById('modalMovieTags');
             tagsContainer.innerHTML = '';
-
+            
             // Adiciona novas tags se existirem
             if (tags) {
                 const tagArray = tags.split(', ');
@@ -493,39 +505,39 @@
                     }
                 });
             }
-
+            
             // Mostra o modal
             const modal = document.getElementById('purchaseModal');
             modal.classList.add('active');
-
+            
             // Adiciona animação
             setTimeout(() => {
                 document.querySelector('.modal-content').style.transform = 'translateY(0)';
                 document.querySelector('.modal-content').style.opacity = '1';
             }, 10);
-
+            
             // Desabilita scroll da página
             document.body.style.overflow = 'hidden';
         }
-
+        
         // Função para fechar o modal
         function closeModal() {
             const modal = document.getElementById('purchaseModal');
             modal.classList.remove('active');
             document.querySelector('.modal-content').style.transform = 'translateY(20px)';
             document.querySelector('.modal-content').style.opacity = '0';
-
+            
             // Habilita scroll da página
             document.body.style.overflow = 'auto';
         }
-
+        
         // Fechar modal ao clicar fora
         document.getElementById('purchaseModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
-
+        
         // Selecionar método de pagamento
         function selectPayment(element) {
             // Remove a seleção anterior
@@ -533,28 +545,28 @@
             if (selected) {
                 selected.classList.remove('selected');
             }
-
+            
             // Adiciona seleção ao elemento clicado
             element.classList.add('selected');
         }
-
+        
         // Contador de ingressos
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('bg-pink-600') || e.target.classList.contains('bg-gray-600')) {
                 const counter = e.target.parentElement.querySelector('span');
                 let value = parseInt(counter.textContent);
-
+                
                 if (e.target.classList.contains('bg-pink-600')) {
                     value++;
                 } else if (value > 0) {
                     value--;
                 }
-
+                
                 counter.textContent = value;
                 updateTotal();
             }
         });
-
+        
         // Atualizar total
         function updateTotal() {
             // Implementar lógica para calcular o total
